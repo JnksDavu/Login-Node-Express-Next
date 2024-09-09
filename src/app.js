@@ -1,49 +1,24 @@
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-// Obter o caminho do arquivo atual e o diretório
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Definir o caminho para o diretório de templates
-const basePath = path.join(__dirname, 'Templates');
+import bodyParser from 'body-parser';
+import { Sequelize } from 'sequelize';
+import userRoutes from './Routes/users.js'; // Importa as rotas
 
 const app = express();
 const port = 3000;
 
-const checkAuth = function(req,res,next){
+// Middleware para parsear JSON
+app.use(bodyParser.json());
 
-    req.authstatus = true
+// Conexão com o banco de dados
+const sequelize = new Sequelize('postgres://postgres:1596753258@localhost:5432/AHGORA');
 
-    if(req.authstatus){
-        console.log('logado')
-        next()
-    }else{
-        console.log('deslogado')
-        next()
-    }
-}
+// Sincroniza o modelo com o banco de dados
+sequelize.sync();
 
-//app.use(checkAuth)
+// Usa as rotas para '/usuarios'
+app.use('/usuarios', userRoutes);
 
-app.get('/hello', (req, res) => {
-    // Enviar o arquivo HTML
-    res.sendFile(`${basePath}/index.html`);
-
-});
-
-app.get('/users/:id', (req, res) => {
-    // Enviar o arquivo HTML
-
-    const id = req.params.id
-
-    console.log(`procurando o usuario ${id}`)
-
-    res.sendFile(`${basePath}/index.html`);
-
-});
-
+// Inicia o servidor
 app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
+  console.log(`Servidor Node escutando na porta ${port}`);
 });
