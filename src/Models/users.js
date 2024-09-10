@@ -1,6 +1,8 @@
 import { Sequelize, DataTypes } from 'sequelize';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const sequelize = new Sequelize('postgres://postgres:1596753258@localhost:5432/AHGORA');
+const sequelize = new Sequelize(process.env.DB_CONNECTION_STRING);
 
 const User = sequelize.define('User', {
   email: {
