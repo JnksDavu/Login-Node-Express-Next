@@ -3,16 +3,16 @@ import crypto from 'crypto';
 
 const DADOS_CRIPTOGRAFAR = {
     algoritmo: "aes-256-cbc",
-    segredo: "chavespadrao12345678901234567890", // Segredo com exatamente 32 caracteres
+    segredo: "chavespadrao12345678901234567890",
     tipo: "hex",
   };
   
   export function criptografar(senha) {
-    const iv = crypto.randomBytes(16); // Gerar um novo IV para cada criptografia
+    const iv = crypto.randomBytes(16); 
     const cipher = crypto.createCipheriv(DADOS_CRIPTOGRAFAR.algoritmo, Buffer.from(DADOS_CRIPTOGRAFAR.segredo), iv);
     let criptografado = cipher.update(senha, 'utf8', DADOS_CRIPTOGRAFAR.tipo);
     criptografado += cipher.final(DADOS_CRIPTOGRAFAR.tipo);
-    return iv.toString(DADOS_CRIPTOGRAFAR.tipo) + ':' + criptografado; // Armazenar o IV junto com a senha criptografada
+    return iv.toString(DADOS_CRIPTOGRAFAR.tipo) + ':' + criptografado;
   }
   
   export function descriptografar(senhaCriptografada) {
