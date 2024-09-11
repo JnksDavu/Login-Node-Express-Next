@@ -26,8 +26,9 @@ Login gerando token para o resto da aplicação:
 
 FRONT-END
 
-![image](https://github.com/user-attachments/assets/f01ee85f-5427-49f2-a950-1dc1972b9ca7)
+![image](https://github.com/user-attachments/assets/0b35cdda-fc17-47a9-8ba5-dcc1c7b76da7)
 
 Criado em Next JS + React e Tailwind CSS nos visuais:
 
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/adcaa9e8-bac4-4cbc-91a9-527deb5a4385)
+
